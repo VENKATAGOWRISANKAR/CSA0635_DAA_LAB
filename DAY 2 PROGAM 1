@@ -1,0 +1,19 @@
+from functools import lru_cache
+
+def findPaths(m, n, N, i, j):
+    MOD = 10**9 + 7
+    
+   
+    def dfs(steps, x, y):
+        if x < 0 or x >= m or y < 0 or y >= n:
+            return 1
+        if steps == 0:
+            return 0
+        
+        return (dfs(steps - 1, x - 1, y) +
+                dfs(steps - 1, x + 1, y) +  
+                dfs(steps - 1, x, y - 1) +  
+                dfs(steps - 1, x, y + 1)) % MOD  
+
+    return dfs(N, i, j)
+
